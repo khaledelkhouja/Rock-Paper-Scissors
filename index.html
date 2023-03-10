@@ -8,16 +8,46 @@
 </head>
 <body>
     <script>
-         function getComputerChoice() { // function return random rock paper scissors
+        // function that return randomly rock paper or scissors
+        function getComputerChoice() { 
             let randomNumber=Math.random()*3;
-            let ComputerChoice="Scissors";
+            let ComputerChoice="SCISSORS";
             if (randomNumber<1){
-                ComputerChoice="Rock";
+                ComputerChoice="ROCK";
             } else if (randomNumber>=1 && randomNumber<2 ){
-                ComputerChoice="Paper";
+                ComputerChoice="PAPER";
             } 
             return ComputerChoice
         }
+        //function that play a single round and return the round result 
+        function playRound(playerSelection,computerSelection) {     
+            let x=prompt("Choose 'Rock' 'Paper' or 'Scissors'",""); 
+            playerSelection=x.toUpperCase();
+            console.log(playerSelection);
+            let roundResult="orthography";
+            if (playerSelection===computerSelection) {
+                roundResult="draw"
+            } else {
+                if (playerSelection==="ROCK" && computerSelection==="PAPER") {                      
+                    roundResult="You Lose! Paper beats Rock";
+                }else if (playerSelection==="ROCK" && computerSelection==="SCISSORS") {
+                    roundResult="You Win! Rock beats Scissors";
+                }else if (playerSelection==="PAPER" && computerSelection==="ROCK") {
+                    roundResult="You Win! Paper beats Rock";
+                }else if (playerSelection==="PAPER" && computerSelection==="SCISSORS") {
+                    roundResult="You Lose! Scissors beats Paper";
+                }else if (playerSelection==="SCISSORS" && computerSelection==="ROCK") {
+                    roundResult="You Lose! Rock beats Scissors";
+                }else if (playerSelection==="SCISSORS" && computerSelection==="PAPER") {
+                    roundResult="You Lose! Scissors beats Paper";
+                }
+            }
+            return roundResult;
+        }
+        const playerSelection="ROCK";
+        const computerSelection=getComputerChoice();
+        // console.log(computerSelection);
+        // console.log(playRound(playerSelection, computerSelection) );
     </script>
 </body>
 </html>
