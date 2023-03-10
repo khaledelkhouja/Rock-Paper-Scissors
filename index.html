@@ -21,33 +21,69 @@
         }
         //function that play a single round and return the round result 
         function playRound(playerSelection,computerSelection) {     
-            let x=prompt("Choose 'Rock' 'Paper' or 'Scissors'",""); 
-            playerSelection=x.toUpperCase();
-            console.log(playerSelection);
             let roundResult="orthography";
-            if (playerSelection===computerSelection) {
+            if (playerSelection.toUpperCase()===computerSelection) {
                 roundResult="draw"
             } else {
-                if (playerSelection==="ROCK" && computerSelection==="PAPER") {                      
-                    roundResult="You Lose! Paper beats Rock";
-                }else if (playerSelection==="ROCK" && computerSelection==="SCISSORS") {
+                if (playerSelection.toUpperCase()==="ROCK" && computerSelection==="PAPER") {                      
+                    roundResult="You Loose! Paper beats Rock";
+                }else if (playerSelection.toUpperCase()==="ROCK" && computerSelection==="SCISSORS") {
                     roundResult="You Win! Rock beats Scissors";
-                }else if (playerSelection==="PAPER" && computerSelection==="ROCK") {
+                }else if (playerSelection.toUpperCase()==="PAPER" && computerSelection==="ROCK") {
                     roundResult="You Win! Paper beats Rock";
-                }else if (playerSelection==="PAPER" && computerSelection==="SCISSORS") {
-                    roundResult="You Lose! Scissors beats Paper";
-                }else if (playerSelection==="SCISSORS" && computerSelection==="ROCK") {
-                    roundResult="You Lose! Rock beats Scissors";
-                }else if (playerSelection==="SCISSORS" && computerSelection==="PAPER") {
-                    roundResult="You Lose! Scissors beats Paper";
+                }else if (playerSelection.toUpperCase()==="PAPER" && computerSelection==="SCISSORS") {
+                    roundResult="You Loose! Scissors beats Paper";
+                }else if (playerSelection.toUpperCase()==="SCISSORS" && computerSelection==="ROCK") {
+                    roundResult="You Loose! Rock beats Scissors";
+                }else if (playerSelection.toUpperCase()==="SCISSORS" && computerSelection==="PAPER") {
+                    roundResult="You Loose! Scissors beats Paper";
                 }
             }
             return roundResult;
         }
-        const playerSelection="ROCK";
-        const computerSelection=getComputerChoice();
-        // console.log(computerSelection);
-        // console.log(playRound(playerSelection, computerSelection) );
+        
+
+        //Function that call playRound 5 times, keep score and reports winner or loser at the end.
+        function game() {
+
+            let winScore=0;                 //Variable initialization
+            let loseScore=0;
+            let drawScore=0;
+            let playerSelection="";
+            let gameResult="";
+            let computerSelection="Rock"
+
+            for (let i=0; i<5; i++) {                                                   // loop 5 times ech round:
+                playerSelection=prompt("Choose 'Rock' 'Paper' or 'Scissors'",""); 
+                computerSelection=getComputerChoice();                                  // call function getComputer Choice
+                console.log(playRound(playerSelection,computerSelection));              //print a round result
+                
+                let wins=playRound(playerSelection,computerSelection).includes("Win!");     //nbr of wins
+                if (wins===true){
+                    winScore++;
+                } 
+                let loses=playRound(playerSelection,computerSelection).includes("Loose!");   //nbr of looses
+                if (loses===true){
+                    loseScore++;
+                } 
+                let draws=playRound(playerSelection,computerSelection).includes("draw");      //nbr of draws
+                if (draws===true){
+                    drawScore++;
+                } 
+            }
+
+
+            if (winScore>loseScore){                                        //Game result
+                gameResult="Congrats! you're the Winner.";
+            } else if (winScore<loseScore){
+                gameResult="Computer wins";
+            } else {
+                gameResult="Draw"
+            }
+
+            return gameResult;    
+        }
+        console.log("Game result : ",game());
     </script>
 </body>
 </html>
