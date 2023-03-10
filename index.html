@@ -8,7 +8,16 @@
 </head>
 <body>
     <script>
-        
+         function getComputerChoice() { // function return random rock paper scissors
+            let randomNumber=Math.random()*3;
+            let ComputerChoice="Scissors";
+            if (randomNumber<1){
+                ComputerChoice="Rock";
+            } else if (randomNumber>=1 && randomNumber<2 ){
+                ComputerChoice="Paper";
+            } 
+            return ComputerChoice
+        }
     </script>
 </body>
 </html>
