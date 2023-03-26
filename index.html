@@ -4,86 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
     <title>Rock-Paper-Scissors</title>
 </head>
 <body>
-    <script>
-        // function that return randomly rock paper or scissors
-        function getComputerChoice() { 
-            let randomNumber=Math.random()*3;
-            let ComputerChoice="SCISSORS";
-            if (randomNumber<1){
-                ComputerChoice="ROCK";
-            } else if (randomNumber>=1 && randomNumber<2 ){
-                ComputerChoice="PAPER";
-            } 
-            return ComputerChoice
-        }
-        //function that play a single round and return the round result 
-        function playRound(playerSelection,computerSelection) {     
-            let roundResult="orthography";
-            if (playerSelection.toUpperCase()===computerSelection) {
-                roundResult="draw"
-            } else {
-                if (playerSelection.toUpperCase()==="ROCK" && computerSelection==="PAPER") {                      
-                    roundResult="You Loose! Paper beats Rock";
-                }else if (playerSelection.toUpperCase()==="ROCK" && computerSelection==="SCISSORS") {
-                    roundResult="You Win! Rock beats Scissors";
-                }else if (playerSelection.toUpperCase()==="PAPER" && computerSelection==="ROCK") {
-                    roundResult="You Win! Paper beats Rock";
-                }else if (playerSelection.toUpperCase()==="PAPER" && computerSelection==="SCISSORS") {
-                    roundResult="You Loose! Scissors beats Paper";
-                }else if (playerSelection.toUpperCase()==="SCISSORS" && computerSelection==="ROCK") {
-                    roundResult="You Loose! Rock beats Scissors";
-                }else if (playerSelection.toUpperCase()==="SCISSORS" && computerSelection==="PAPER") {
-                    roundResult="You Loose! Scissors beats Paper";
-                }
-            }
-            return roundResult;
-        }
-        
+    <h1>Rock Paper Scissors</h1>
 
-        //Function that call playRound 5 times, keep score and reports winner or loser at the end.
-        function game() {
+    <button id="rock" value="ROCK">Rock</button>
+    <button id="paper" value="PAPER">Paper</button>
+    <button id="scissors" value="SCISSORS">Scissors</button>
 
-            let winScore=0;                 //Variable initialization
-            let loseScore=0;
-            let drawScore=0;
-            let playerSelection="";
-            let gameResult="";
-            let computerSelection="Rock"
-
-            for (let i=0; i<5; i++) {                                                   // loop 5 times ech round:
-                playerSelection=prompt("Choose 'Rock' 'Paper' or 'Scissors'",""); 
-                computerSelection=getComputerChoice();                                  // call function getComputer Choice
-                console.log(playRound(playerSelection,computerSelection));              //print a round result
-                
-                let wins=playRound(playerSelection,computerSelection).includes("Win!");     //nbr of wins
-                if (wins===true){
-                    winScore++;
-                } 
-                let loses=playRound(playerSelection,computerSelection).includes("Loose!");   //nbr of looses
-                if (loses===true){
-                    loseScore++;
-                } 
-                let draws=playRound(playerSelection,computerSelection).includes("draw");      //nbr of draws
-                if (draws===true){
-                    drawScore++;
-                } 
-            }
+    <p id="results"></p>
+    <p id="runningScore"></p>
+    <p id="drawScore"></p>
+    <p id="playerScore"></p>
+    <p id="computerScore"></p>
+    <p id="winnerAnnounce"></p>
 
 
-            if (winScore>loseScore){                                        //Game result
-                gameResult="Congrats! you're the Winner.";
-            } else if (winScore<loseScore){
-                gameResult="Computer wins";
-            } else {
-                gameResult="Draw"
-            }
-
-            return gameResult;    
-        }
-        console.log("Game result : ",game());
-    </script>
 </body>
 </html>
