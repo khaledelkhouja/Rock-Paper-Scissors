@@ -17,7 +17,6 @@ header {
     color: #f9faf8;
 }
 .container {
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -52,6 +51,10 @@ gap: 15px;
 .restart-btn:hover{
     background-color: #1f2937;
     color: #ffffff;
+    margin-top: 10px;
+}
+#winnerAnnounce {
+    padding: 10px 0px;
 }
 
 footer {

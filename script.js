@@ -24,18 +24,14 @@ bntScissors.addEventListener('click',()=>{
 });
 
 
-//gameOver function reset all value
+//gameOver function 
 function gameOver() {
     document.getElementById("winnerAnnounce").innerText=gameResult;
 
-    
     bntRock.disabled=true;
     bntPaper.disabled=true;
     bntScissors.disabled=true;
     
-    // setTimeout(function(){
-        //     window.location.reload();
-        // }, 5000);
         
     let parentRestart=document.getElementsByClassName("results");
     let btnRestart=document.createElement("button");
@@ -50,7 +46,6 @@ function gameOver() {
     winnerAnnounce.style.cssText ="background-color:#1f2937;border:2px solid gray;color:white;";
 
     const textResult = document.getElementById("results");
-    console.log(textResult)
     textResult.remove();
 }
 
