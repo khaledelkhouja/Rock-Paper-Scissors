@@ -2,10 +2,8 @@ let bntRock=document.querySelector('#rock');
 let bntPaper=document.querySelector('#paper');
 let bntScissors=document.querySelector('#scissors');
 
-let runScore=0;
 let playerScore=0;                 //Variable initialization
 let computerScore=0;
-let drawScore=0;
 let gameResult="";
 
 
@@ -28,14 +26,32 @@ bntScissors.addEventListener('click',()=>{
 
 //gameOver function reset all value
 function gameOver() {
+    document.getElementById("winnerAnnounce").innerText=gameResult;
+
     
     bntRock.disabled=true;
     bntPaper.disabled=true;
     bntScissors.disabled=true;
+    
+    // setTimeout(function(){
+        //     window.location.reload();
+        // }, 5000);
+        
+    let parentRestart=document.getElementsByClassName("results");
+    let btnRestart=document.createElement("button");
+    
+    btnRestart.innerHTML="Start over";
+    btnRestart.classList.add('restart-btn')
+    parentRestart[0].appendChild(btnRestart);
+    
+    btnRestart.addEventListener('click',()=>window.location.reload())
+    
+    let winnerAnnounce=document.querySelector("#winnerAnnounce");
+    winnerAnnounce.style.cssText ="background-color:#1f2937;border:2px solid gray;color:white;";
 
-    setTimeout(function(){
-        window.location.reload();
-    }, 5000);
+    const textResult = document.getElementById("results");
+    console.log(textResult)
+    textResult.remove();
 }
 
 
@@ -46,7 +62,6 @@ function game() {
     
     let round=playRound(playerSelection,computerSelection);
     
-    runScore++;
     let wins=round.includes("Win!");     //nbr of wins
     let loses=round.includes("Loose!");   //nbr of looses
     let draws=round.includes("draw");      //nbr of draws
@@ -54,24 +69,21 @@ function game() {
         playerScore++;
     } else if (loses===true){
         computerScore++;
-    } else drawScore++;
+    }
+    //print result
+    document.getElementById("results").innerText=round;
+    document.getElementById("playerScore").innerText=`Player ${playerScore}`;
+    document.getElementById("computerScore").innerText=`Computer ${computerScore}`;
     
     if (playerScore===5){                                        //Game result
-        gameOver();
         gameResult="Congrats! you're the Winner.";
-    } else if  (computerScore===5){
         gameOver();
+    } else if  (computerScore===5){
         gameResult="Computer wins";
+        gameOver();
     }
     
     
-    //print result
-    document.getElementById("results").innerText=`Round result : ${round}`;
-    document.getElementById("runningScore").innerText=`Running score : ${runScore}`;
-    document.getElementById("drawScore").innerText=`Draw  : ${drawScore}`;
-    document.getElementById("playerScore").innerText=`Player score : ${playerScore}`;
-    document.getElementById("computerScore").innerText=`Computer score : ${computerScore}`;
-    document.getElementById("winnerAnnounce").innerText=`Game result : ${gameResult}`;
 } 
 
 // function that return randomly rock paper or scissors
